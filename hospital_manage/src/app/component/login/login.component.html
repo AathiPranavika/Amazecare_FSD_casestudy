@@ -1,0 +1,49 @@
+<div>
+    <button type="button" class="btn btn-outline-secondary mt-3 ms-5" (click)="goBack()">← Back</button>
+  </div>
+<div class="container col-md-4 mt-5 border rounded p-4 shadow">
+  <h3 class="text-center mb-4">Login Form</h3>
+
+  <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm.value)" novalidate>
+    <div class="form-group mb-3">
+      <label for="userName" class="form-label">Email:</label>
+      <input
+        type="email"
+        id="userName"
+        name="userName"
+        class="form-control"
+        required
+        email
+        ngModel
+        #emailControl="ngModel"
+        [ngClass]="{'is-invalid': emailControl.touched && emailControl.invalid}"
+      />
+      <div class="invalid-feedback" *ngIf="emailControl.touched">
+        <div *ngIf="emailControl.errors?.['required']">Email is required</div>
+        <div *ngIf="emailControl.errors?.['email']">Invalid email format</div>
+      </div>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="password" class="form-label">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        required
+        ngModel
+        #passControl="ngModel"
+        [ngClass]="{'is-invalid': passControl.touched && passControl.invalid}"
+      />
+      <div class="invalid-feedback" *ngIf="passControl.touched && passControl.errors?.['required']">
+        Password is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Log In</button>
+
+    <a routerLink="/forgot-password">forgot password?</a>
+    <div class="mt-3 text-danger text-center" *ngIf="error">{{ error }}</div>
+  </form>
+</div>

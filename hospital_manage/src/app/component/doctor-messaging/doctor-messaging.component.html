@@ -1,0 +1,39 @@
+<div>
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+
+<div class="container py-4" style="max-height: 90vh;">
+  <h3 class="text-center text-primary mb-4">💬 Chat with Patient Id:{{patientId}}</h3>
+
+  <!-- Chat Box -->
+  <div class="chat-box border rounded p-3 mb-4"
+       style="height: 400px; overflow-y: auto; background-color: #f5f5f5;" 
+       #chatBox>
+    <div *ngFor="let msg of messages">
+      <div [ngClass]="{
+            'text-start': msg.senderRole === 'PATIENT',
+            'text-end': msg.senderRole === 'DOCTOR'
+          }">
+        <small class="text-muted d-block mb-1">
+          {{ msg.senderRole }} • {{ msg.sentAt | date:'short' }}
+        </small>
+        
+        <div class="d-inline-block px-3 py-2 mb-2 rounded"
+             [ngStyle]="{
+               'background-color': msg.senderRole === 'DOCTOR' ? '#d1ecf1' : '#f8d7da',
+               'max-width': '70%'
+             }">
+          {{ msg.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Input -->
+  <div class="d-flex">
+    <input [(ngModel)]="messageDTO.message"
+           class="form-control me-2"
+           placeholder="Type your message..." />
+    <button class="btn btn-primary" (click)="sendMessage()">Send</button>
+  </div>
+</div>

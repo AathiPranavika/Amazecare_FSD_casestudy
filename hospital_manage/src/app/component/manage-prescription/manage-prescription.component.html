@@ -1,0 +1,35 @@
+<!-- Heading and Back Button Row -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+  <h4 class="mb-0">Prescriptions for Appointment #{{ appointmentId }}</h4>
+  <button class="btn btn-outline-primary" [routerLink]="['/add-prescription', appointmentId]">
+    ➕ Add Prescription
+  </button>
+</div>
+
+<!-- Prescription Table -->
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Medicine</th>
+      <th>Dosage</th>
+      <th>Remarks</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pres of prescriptions">
+      <td>{{ pres.prescriptionId }}</td>
+      <td>{{ pres.medicineName }}</td>
+      <td>{{ pres.dosage }}</td>
+      <td>{{ pres.remarks }}</td>
+      <td>
+        <button class="btn btn-outline-primary btn-sm me-1"
+                [routerLink]="['/update-prescription', pres.prescriptionId]">✏️ Edit</button>
+        <button class="btn btn-outline-danger btn-sm"
+                (click)="deletePrescription(pres.prescriptionId)">🗑️ Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

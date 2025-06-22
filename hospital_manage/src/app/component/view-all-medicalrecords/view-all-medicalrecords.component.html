@@ -1,0 +1,22 @@
+<div class="container mt-4" *ngIf="medicalRecord && medicalRecord.length > 0">
+  <h3 class="mb-4">📝 Medical Records for Patient ID: {{ patientId }}</h3>
+
+  <div *ngFor="let record of medicalRecord" class="mb-4 border rounded shadow p-3 bg-light">
+    <h5>📄 Record ID: {{ record.recordId }}</h5>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Appointment ID:</strong> {{ record.appointmentId }}</li>
+      <li class="list-group-item"><strong>Symptoms:</strong> {{ record.symptoms }}</li>
+      <li class="list-group-item"><strong>Physical Exam:</strong> {{ record.physicalExam }}</li>
+      <li class="list-group-item"><strong>Diagnosis:</strong> {{ record.diagnosis }}</li>
+      <li class="list-group-item"><strong>Treatment Plan:</strong> {{ record.treatmentPlan }}</li>
+    </ul>
+  </div>
+
+  <button class="btn btn-outline-secondary mt-3" (click)="goBack()">← Back</button>
+</div>
+
+<!-- If no records found -->
+<div class="container mt-4" *ngIf="medicalRecord && medicalRecord.length === 0">
+  <p class="text-danger">No medical records found for this patient.</p>
+  <button class="btn btn-outline-secondary mt-3" (click)="goBack()">← Back</button>
+</div>

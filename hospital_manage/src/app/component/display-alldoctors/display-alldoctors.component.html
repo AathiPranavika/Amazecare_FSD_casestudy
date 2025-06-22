@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Doctors</h2>
+<div class="mb-3">
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+  <!-- Filters -->
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="selectedGender" (change)="filterByGender()">
+        <option value="">Filter by Gender</option>
+        <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="selectedSpecialization" (change)="filterBySpecialization()">
+        <option value="">Filter by Specialization</option>
+        <option *ngFor="let spec of specializations" [value]="spec">{{ spec }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <input type="text" class="form-control" [(ngModel)]="searchName" placeholder="Search by Name" (input)="searchByName()">
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn btn-secondary w-100" (click)="clearFilters()">Clear Filters</button>
+    </div>
+  </div>
+
+  <!-- Doctor Cards -->
+  <div class="row" *ngIf="filteredDoctors.length > 0; else noDoctors">
+    <div class="col-md-4 mb-4" *ngFor="let doc of filteredDoctors">
+      <div class="card shadow-sm border-primary h-100">
+        <div class="card-header bg-primary text-white text-center">
+          <h5 class="card-title mb-0">{{ doc.user.name }}</h5>
+        </div>
+        <div class="card-body">
+           <p><strong>Doctor Id:</strong> {{ doc.doctorId }}</p>
+          <p><strong>Specialization:</strong> {{ doc.specialization }}</p>
+          <p><strong>Experience:</strong> {{ doc.experienceYears }} years</p>
+          <p><strong>Gender:</strong> {{ doc.user.gender }}</p>
+          <p><strong>Qualification:</strong> {{ doc.qualification }}</p>
+          <p><strong>Designation:</strong> {{ doc.designation }}</p>
+          <p><strong>Email:</strong> {{ doc.user.email }}</p>
+          <p><strong>Contact:</strong> {{ doc.user.contactNumber }}</p>
+<button   *ngIf="loggedInUserRole === 'PATIENT'" class="btn btn-outline-primary mt-2 w-100" [routerLink]="['/patient-messaging', doc.doctorId]">
+  💬 Message
+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-template #noDoctors>
+    <div class="alert alert-warning text-center">
+      No doctors available at the moment.
+    </div>
+  </ng-template>
+</div>

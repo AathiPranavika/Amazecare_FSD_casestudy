@@ -1,0 +1,15 @@
+<div class="container mt-4" *ngIf="prescriptions.length > 0">
+  <h3 class="mb-4 text-primary">Prescriptions for Appointment ID: {{ appointmentId }}</h3>
+
+  <div *ngFor="let prescription of prescriptions" class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">Prescription ID: {{ prescription.prescriptionId }}</h5>
+      <p class="card-text"><strong>Medical Record ID:</strong> {{ prescription.medicalRecordId }}</p>
+      <p class="card-text"><strong>Medicine Name:</strong> {{ prescription.medicineName }}</p>
+      <p class="card-text"><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+      <p class="card-text" *ngIf="prescription.remarks"><strong>Remarks:</strong> {{ prescription.remarks }}</p>
+    </div>
+  </div>
+
+  <button class="btn btn-secondary mt-3" (click)="goBack()">Go Back</button>
+</div>

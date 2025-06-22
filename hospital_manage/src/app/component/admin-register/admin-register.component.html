@@ -1,0 +1,44 @@
+<div class="mb-3 ms-3">
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+
+<div class="container col-md-6 mt-5 border rounded p-4 shadow">
+  <h3 class="text-center mb-4">Create Admin Profile</h3>
+
+  <form #adminForm="ngForm" (ngSubmit)="registerAdmin(adminForm.value)">
+
+    <!-- Admin Code -->
+    <div class="form-group mb-3">
+  <label for="adminCode">Admin Code:</label>
+  <input type="text" id="adminCode" name="adminCode" class="form-control" required pattern="^ADM\d{3}$" ngModel #codeControl="ngModel">
+  <div class="text-danger" *ngIf="codeControl.touched">
+    <div *ngIf="codeControl.errors?.['required']">Admin Code is required</div>
+    <div *ngIf="codeControl.errors?.['pattern']">Must start with 'ADM' followed by exactly 3 digits</div>
+  </div>
+</div>
+
+
+    <!-- Department -->
+    <div class="form-group mb-3">
+      <label for="department">Department:</label>
+      <input type="text" id="department" name="department" class="form-control" required minlength="3" ngModel #deptControl="ngModel">
+      <div class="text-danger" *ngIf="deptControl.touched">
+        <div *ngIf="deptControl.errors?.['required']">Department is required</div>
+        <div *ngIf="deptControl.errors?.['minlength']">Must be at least 3 characters</div>
+      </div>
+    </div>
+
+    <!-- Qualification -->
+    <div class="form-group mb-4">
+      <label for="qualification">Qualification:</label>
+      <input type="text" id="qualification" name="qualification" class="form-control" required minlength="3" ngModel #qualControl="ngModel">
+      <div class="text-danger" *ngIf="qualControl.touched">
+        <div *ngIf="qualControl.errors?.['required']">Qualification is required</div>
+        <div *ngIf="qualControl.errors?.['minlength']">Must be at least 3 characters</div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100" [disabled]="adminForm.invalid">Register Admin</button>
+  </form>
+</div>

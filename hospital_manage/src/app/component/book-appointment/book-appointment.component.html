@@ -1,0 +1,39 @@
+<div class="mb-3 ms-3">
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+
+<div class="container col-md-6 mt-5 border rounded p-4 shadow">
+  <h3 class="text-center mb-4">Book Appointment</h3>
+  <form #appointmentForm="ngForm" (ngSubmit)="bookAppointment()">
+
+    <div class="form-group mb-3">
+      <label for="patientId">Patient ID:</label>
+      <input type="text" id="patientId" name="patientId" class="form-control" [(ngModel)]="appointment.patientId" [readonly]="true" />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="doctorId">Select Doctor:</label>
+      <!--The value you provide inside [value]="..." will be the one stored in [(ngModel)].
+       if no value provided it will take string inside <option>-->
+      <select id="doctorId" name="doctorId" class="form-control" required [(ngModel)]="appointment.doctorId" #doctorControl="ngModel">
+        <option value="" disabled selected>Select a doctor</option>
+        <option *ngFor="let doctor of doctors" [value]="doctor.doctorId">{{ doctor.doctorId }} - {{ doctor.user?.name }} ({{ doctor.specialization }})</option>
+      </select>
+      <div class="text-danger" *ngIf="doctorControl.touched && doctorControl.invalid">
+        <div *ngIf="doctorControl.errors?.['required']">Doctor is required</div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="symptoms">Symptoms:</label>
+      <textarea id="symptoms" name="symptoms" class="form-control" rows="3" maxlength="255" [(ngModel)]="appointment.symptoms"></textarea>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="status">Status:</label>
+      <input type="text" id="status" name="status" class="form-control" [(ngModel)]="appointment.status" readonly />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="appointmentForm.invalid">Book Appointment</button>
+  </form>
+</div>

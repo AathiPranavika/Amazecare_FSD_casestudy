@@ -1,0 +1,67 @@
+<div class="admin-dashboard container-fluid py-5" style="min-height: 100vh; background: linear-gradient(to right, #f3f4f6, #e0f7fa);">
+  <div class="container">
+
+    <h5 class="text-start text-secondary mb-2">
+       Welcome, <span class="fw-bold text-dark">{{ username }}</span>
+    </h5>
+
+    <h2 class="text-center text-primary mb-5 display-5 fw-bold">
+      🛠️ Admin Dashboard
+    </h2>
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">👥 See All Users</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/display-allusers">View</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">➕ Add New User</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/registration">Register</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">🧑‍💼 Admin Registration</h5>
+          <button class="btn btn-outline-primary w-100" [routerLink]="['/admin-register/', userId]">Register Admin</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">✏️ Update Admin</h5>
+          <button class="btn btn-outline-primary w-100" [routerLink]="['/update-admin/', userId]">Update Profile</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">🧑‍⚕️ All Doctors</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/display-alldoctors">View Doctors</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">🏥 All Patients</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/display-allpatients">View Patients</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-center shadow-sm border-0 p-3">
+          <h5 class="card-title">📅 Appointments</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/view-appointment">View Appointments</button>
+        </div>
+      </div>
+
+    </div>
+ <div class="mt-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

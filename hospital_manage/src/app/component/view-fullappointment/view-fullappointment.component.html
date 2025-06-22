@@ -1,0 +1,40 @@
+<div class="container mt-4" *ngIf="appointment">
+  <h3>Appointment Details (ID: {{ appointment.appointmentId }})</h3>
+
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Date:</strong> {{ appointment.appointmentDate | date: 'short' }}</li>
+    <li class="list-group-item"><strong>Symptoms:</strong> {{ appointment.symptoms || 'N/A' }}</li>
+    <li class="list-group-item"><strong>Status:</strong> {{ appointment.status }}</li>
+    <li class="list-group-item"><strong>Created At:</strong> {{ appointment.createdAt | date: 'short' }}</li>
+  </ul>
+
+  <div *ngIf="appointment.patient">
+    <h4 class="mt-4">Patient Details</h4>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Patient ID:</strong> {{ appointment.patient.patientId }}</li>
+      <li class="list-group-item"><strong>Name:</strong> {{ appointment.patient.user.name }}</li>
+      <li class="list-group-item"><strong>Blood Group:</strong> {{ appointment.patient.bloodGroup }}</li>
+      <li class="list-group-item"><strong>Emergency Contact:</strong> {{ appointment.patient.emergencyContact }}</li>
+      <li class="list-group-item"><strong>Address:</strong> {{ appointment.patient.address }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="appointment.doctor">
+    <h4 class="mt-4">Doctor Details</h4>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Doctor ID:</strong> {{ appointment.doctor.doctorId }}</li>
+      <li class="list-group-item"><strong>Name:</strong> {{ appointment.doctor.user.name }}</li>
+      <li class="list-group-item"><strong>Specialization:</strong> {{ appointment.doctor.specialization }}</li>
+      <li class="list-group-item"><strong>Qualification:</strong> {{ appointment.doctor.qualification }}</li>
+      <li class="list-group-item"><strong>Experience:</strong> {{ appointment.doctor.experienceYears }} years</li>
+    </ul>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-secondary mt-3" (click)="goBack()">← Back</button>
+  </div>
+</div>
+
+<div class="container mt-4 text-center text-muted" *ngIf="!appointment">
+  <p>Loading appointment details...</p>
+</div>

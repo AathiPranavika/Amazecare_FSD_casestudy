@@ -1,0 +1,98 @@
+<div class="mb-3 ms-3">
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+
+<h4 class="text-center my-4">User Registration</h4>
+
+<form #userForm="ngForm" class="container col-md-6 border p-4 rounded shadow" (ngSubmit)="fetchUserData(userForm.value)">
+
+  <!-- Name -->
+  <div class="form-group mb-3">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required minlength="3" class="form-control" ngModel #nameControl="ngModel">
+    <small class="text-danger" *ngIf="nameControl.touched && nameControl.errors?.['required']">Name is mandatory</small>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group mb-3">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required class="form-control" ngModel #emailControl="ngModel" email
+           [ngClass]="{'is-invalid': emailControl.invalid && emailControl.touched }">
+    <div class="text-danger" *ngIf="emailControl.touched">
+      <div *ngIf="emailControl.errors?.['required']">Email is mandatory</div>
+      <div *ngIf="emailControl.errors?.['email']">Invalid email format</div>
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group mb-3">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required minlength="6" class="form-control" ngModel #passControl="ngModel">
+    <div class="text-danger" *ngIf="passControl.touched">
+      <div *ngIf="passControl.errors?.['required']">Password is mandatory</div>
+      <div *ngIf="passControl.errors?.['minlength']">Password should have minimum 6 characters</div>
+    </div>
+  </div>
+
+  <!-- Role -->
+  <div class="form-group mb-3">
+    <label class="d-block">Role:</label>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="rolePatient" name="role" value="PATIENT" required ngModel #roleControl="ngModel">
+      <label class="form-check-label" for="rolePatient">Patient</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="roleDoctor" name="role" value="DOCTOR" ngModel>
+      <label class="form-check-label" for="roleDoctor">Doctor</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="roleAdmin" name="role" value="ADMIN" ngModel>
+      <label class="form-check-label" for="roleAdmin">Admin</label>
+    </div>
+    <div class="text-danger mt-1" *ngIf="roleControl.touched && roleControl.errors?.['required']">Role is mandatory</div>
+  </div>
+
+  <!-- Gender -->
+  <div class="form-group mb-3">
+    <label class="d-block">Gender:</label>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="genderMale" name="gender" value="Male" ngModel #genderControl="ngModel" required>
+      <label class="form-check-label" for="genderMale">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="genderFemale" name="gender" value="Female" ngModel>
+      <label class="form-check-label" for="genderFemale">Female</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="genderOther" name="gender" value="Other" ngModel>
+      <label class="form-check-label" for="genderOther">Other</label>
+    </div>
+    <div class="text-danger mt-1" *ngIf="genderControl.touched && genderControl.errors?.['required']">Gender is mandatory</div>
+  </div>
+
+  <!-- Date of Birth -->
+  <div class="form-group mb-3">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dateOfBirth" required class="form-control" ngModel #dobControl="ngModel">
+    <small class="text-danger" *ngIf="dobControl.touched && dobControl.errors?.['required']">Date of Birth is required</small>
+  </div>
+
+  <!-- Contact Number -->
+  <div class="form-group mb-4">
+    <label for="contact">Contact Number:</label>
+    <input type="text" id="contact" name="contactNumber" pattern="\d{10}" required class="form-control" ngModel #contactControl="ngModel">
+    <div class="text-danger" *ngIf="contactControl.touched">
+      <div *ngIf="contactControl.errors?.['required']">Contact number is required</div>
+      <div *ngIf="contactControl.errors?.['pattern']">Contact number must be 10 digits</div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary w-50 mx-auto d-block" [disabled]="userForm.invalid">Register</button>
+
+</form>
+
+<router-outlet></router-outlet>
+
+
+

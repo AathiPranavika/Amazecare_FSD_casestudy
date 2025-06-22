@@ -1,0 +1,12 @@
+<div class="container mt-4" *ngIf="medicalRecord">
+  <h3>Medical Record Details (Record ID: {{ medicalRecord.recordId }})</h3>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Appointment ID:</strong> {{ appointmentId }}</li>
+    <li class="list-group-item"><strong>Symptoms:</strong> {{ medicalRecord.symptoms }}</li>
+    <li class="list-group-item"><strong>Physical Exam:</strong> {{ medicalRecord.physicalExam }}</li>
+    <li class="list-group-item"><strong>Diagnosis:</strong> {{ medicalRecord.diagnosis }}</li>
+    <li class="list-group-item"><strong>Treatment Plan:</strong> {{ medicalRecord.treatmentPlan }}</li>
+  </ul>
+
+  <button class="btn btn-secondary mt-3" (click)="goBack()">Go Back</button>
+</div>

@@ -1,0 +1,49 @@
+<div class="container mt-4" *ngIf="user">
+  <h3>User Details (ID: {{ user.userId }})</h3>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Name:</strong> {{ user.name }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+    <li class="list-group-item"><strong>Role:</strong> {{ user.role }}</li>
+    <li class="list-group-item"><strong>Gender:</strong> {{ user.gender }}</li>
+    <li class="list-group-item"><strong>Date of Birth:</strong> {{ user.dateOfBirth }}</li>
+    <li class="list-group-item"><strong>Contact Number:</strong> {{ user.contactNumber }}</li>
+    <li class="list-group-item"><strong>Created At:</strong> {{ user.createdAt }}</li>
+  </ul>
+
+  <div *ngIf="user.role === 'PATIENT' && user.patient">
+    <h4 class="mt-4">Patient Details</h4>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Patient Id:</strong> {{ user.patient.patientId }}</li>
+      <li class="list-group-item"><strong>Address:</strong> {{ user.patient.address }}</li>
+      <li class="list-group-item"><strong>Blood Group:</strong> {{ user.patient.bloodGroup }}</li>
+      <li class="list-group-item"><strong>Emergency Contact:</strong> {{ user.patient.emergencyContact }}</li>
+      <li class="list-group-item"><strong>Medical History:</strong> {{ user.patient.medicalHistory }}</li>
+    </ul>
+  </div>
+
+<div *ngIf="user.role === 'DOCTOR' && user.doctor">
+  <h4 class="mt-4">Doctor Details</h4>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Doctor ID:</strong> {{ user.doctor.doctorId }}</li>
+    <li class="list-group-item"><strong>Specialization:</strong> {{ user.doctor.specialization }}</li>
+    <li class="list-group-item"><strong>Experience:</strong> {{ user.doctor.experienceYears }} years</li>
+    <li class="list-group-item"><strong>Qualification:</strong> {{ user.doctor.qualification }}</li>
+    <li class="list-group-item"><strong>Designation:</strong> {{ user.doctor.designation }}</li>
+  </ul>
+</div>
+
+<div *ngIf="user.role === 'ADMIN' && user.admin">
+  <h4 class="mt-4">Admin Details</h4>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Admin ID:</strong> {{ user.admin.adminId }}</li>
+    <li class="list-group-item"><strong>Admin Code:</strong> {{ user.admin.adminCode }}</li>
+    <li class="list-group-item"><strong>Department:</strong> {{ user.admin.department }}</li>
+    <li class="list-group-item"><strong>Qualification:</strong> {{ user.admin.qualification }}</li>
+  </ul>
+</div>
+
+<div>
+        <button type="button" class="btn btn-secondary ms-2 mt-3" (click)="goBack()">Back</button>
+
+  </div>
+</div>

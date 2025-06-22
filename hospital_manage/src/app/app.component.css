@@ -1,0 +1,11 @@
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: block;
+  z-index: 1000;
+}

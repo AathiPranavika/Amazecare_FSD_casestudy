@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Update Doctor Profile</h2>
+
+  <form #doctorForm="ngForm" (ngSubmit)="updateDoctor()">
+
+    <!-- Doctor ID (Read-only) -->
+    <div class="mb-3">
+      <label for="doctorId" class="form-label">Doctor ID</label>
+      <input type="number" id="doctorId" class="form-control"
+             [(ngModel)]="doctor.doctorId" name="doctorId" disabled>
+    </div>
+
+    <!-- Specialization -->
+    <div class="mb-3">
+      <label for="specialization" class="form-label">Specialization</label>
+      <input type="text" id="specialization" class="form-control"
+             [(ngModel)]="doctor.specialization" name="specialization" required minlength="3"
+             #specControl="ngModel">
+      <div class="text-danger" *ngIf="specControl.touched && specControl.invalid">
+        <div *ngIf="specControl.errors?.['required']">Specialization is required.</div>
+        <div *ngIf="specControl.errors?.['minlength']">Minimum 3 characters required.</div>
+      </div>
+    </div>
+
+    <!-- Experience Years -->
+    <div class="mb-3">
+      <label for="experienceYears" class="form-label">Experience Years</label>
+      <input type="number" id="experienceYears" class="form-control"
+             [(ngModel)]="doctor.experienceYears" name="experienceYears" min="0" required
+             #expControl="ngModel">
+      <div class="text-danger" *ngIf="expControl.touched && expControl.invalid">
+        <div *ngIf="expControl.errors?.['required']">Experience is required.</div>
+        <div *ngIf="expControl.errors?.['min']">Experience cannot be negative.</div>
+      </div>
+    </div>
+
+    <!-- Qualification -->
+    <div class="mb-3">
+      <label for="qualification" class="form-label">Qualification</label>
+      <input type="text" id="qualification" class="form-control"
+             [(ngModel)]="doctor.qualification" name="qualification" required minlength="3"
+             #qualControl="ngModel">
+      <div class="text-danger" *ngIf="qualControl.touched && qualControl.invalid">
+        <div *ngIf="qualControl.errors?.['required']">Qualification is required.</div>
+        <div *ngIf="qualControl.errors?.['minlength']">Minimum 3 characters required.</div>
+      </div>
+    </div>
+
+    <!-- Designation -->
+    <div class="mb-4">
+      <label for="designation" class="form-label">Designation</label>
+      <input type="text" id="designation" class="form-control"
+             [(ngModel)]="doctor.designation" name="designation" required minlength="3"
+             #desigControl="ngModel">
+      <div class="text-danger" *ngIf="desigControl.touched && desigControl.invalid">
+        <div *ngIf="desigControl.errors?.['required']">Designation is required.</div>
+        <div *ngIf="desigControl.errors?.['minlength']">Minimum 3 characters required.</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary" [disabled]="doctorForm.invalid">Update</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="goBack()">Cancel</button>
+  </form>
+</div>

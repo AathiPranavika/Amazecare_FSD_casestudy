@@ -1,0 +1,71 @@
+<div class="patient-dashboard container-fluid py-5" style="min-height: 100vh; background: linear-gradient(to right, #e3f2fd, #bbdefb);">
+  <div class="container">
+
+    <h5 class="text-start text-secondary mb-2">
+       Welcome, <span class="fw-bold text-dark">{{ username }}</span>
+    </h5>
+
+    <h2 class="text-center text-primary mb-5 display-5 fw-bold">
+      🏥 Patient Dashboard
+    </h2>
+    <!-- Dashboard Cards -->
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">✅ Register</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/patient-register">Register</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">👤 View Profile</h5>
+          <button class="btn btn-outline-primary w-100" [routerLink]="['/view-fulluser', userId]">View</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">🛠️ Update Profile</h5>
+          <button class="btn btn-outline-primary w-100" [routerLink]="['/update-patient', userId]">Update</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">📅 My Appointments</h5>
+          <button class="btn btn-outline-primary w-100" [routerLink]="['/patient-appointments', userId]">View</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">🗓️ Book Appointment</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/book-appointment">Book</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">📄 Medical Records</h5>
+          <button class="btn btn-outline-primary w-100" [routerLink]="['/view-all-medicalrecord', patientId]">View</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white">
+          <h5 class="card-title mb-3">🧑‍⚕️ All Doctors</h5>
+          <button class="btn btn-outline-primary w-100" routerLink="/display-alldoctors">View</button>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <!-- Child routes -->
+    <div class="mt-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container col-md-6 mt-5 border rounded p-4 shadow">
+  <h3 class="text-center mb-4">Update Prescription</h3>
+
+  <form #presForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <!-- Prescription ID (Disabled) -->
+    <div class="mb-3">
+      <label class="form-label">Prescription ID</label>
+      <input type="number" class="form-control" [(ngModel)]="prescription.prescriptionId" name="prescriptionId" disabled>
+    </div>
+
+    <!-- Medical Record ID (Disabled or hidden) -->
+    <div class="mb-3">
+      <label class="form-label">Medical Record ID</label>
+      <input type="number" class="form-control" [(ngModel)]="prescription.medicalRecordId" name="medicalRecordId" disabled>
+    </div>
+
+    <!-- Medicine Name -->
+    <div class="mb-3">
+      <label class="form-label">Medicine Name</label>
+      <input type="text" class="form-control" [(ngModel)]="prescription.medicineName" name="medicineName"
+             required minlength="2" #medCtrl="ngModel">
+      <div class="text-danger" *ngIf="medCtrl.touched && medCtrl.invalid">
+        <div *ngIf="medCtrl.errors?.['required']">Medicine name is required.</div>
+        <div *ngIf="medCtrl.errors?.['minlength']">Minimum 2 characters.</div>
+      </div>
+    </div>
+
+    <!-- Dosage -->
+    <div class="mb-3">
+      <label class="form-label">Dosage</label>
+      <input type="text" class="form-control" [(ngModel)]="prescription.dosage" name="dosage"
+             required #dosageCtrl="ngModel">
+      <div class="text-danger" *ngIf="dosageCtrl.touched && dosageCtrl.invalid">
+        <div *ngIf="dosageCtrl.errors?.['required']">Dosage is required.</div>
+      </div>
+    </div>
+
+    <!-- Remarks -->
+    <div class="mb-3">
+      <label class="form-label">Remarks</label>
+      <textarea class="form-control" [(ngModel)]="prescription.remarks" name="remarks" rows="3"></textarea>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary w-100" [disabled]="presForm.invalid">Update Prescription</button>
+    <button type="button" class="btn btn-secondary w-100 mt-2" (click)="goBack()">Cancel</button>
+  </form>
+</div>

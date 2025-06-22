@@ -1,0 +1,40 @@
+<div *ngIf="allUserDetails.length > 0">
+    <h4 class="text-center">All Registered Users</h4>
+<div class="mb-3">
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+          <th>Contact Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUserDetails">
+          <td>{{ user.userId }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.dateOfBirth }}</td>
+          <td>{{ user.contactNumber }}</td>
+           <td>
+            <button class="btn btn-info btn-sm" routerLink="/view-fulluser/{{user.userId}}">View</button>
+          </td>
+           <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteUser(user.userId)">Delete</button>
+          </td>
+           <td>
+            <button class="btn btn-info btn-sm" routerLink="/update-user/{{user.userId}}">Update</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

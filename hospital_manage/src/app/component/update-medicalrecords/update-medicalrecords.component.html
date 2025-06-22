@@ -1,0 +1,70 @@
+<div class="container col-md-6 mt-5 border rounded p-4 shadow">
+  <h3 class="text-center mb-4">Update Medical Record</h3>
+
+  <form #medicalForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <!-- Record ID (hidden or optional display) -->
+    <div class="mb-3">
+      <label for="recordId" class="form-label">Record ID</label>
+      <input type="number" id="recordId" class="form-control" [(ngModel)]="medicalRecord.recordId" name="recordId" readonly>
+    </div>
+
+    <!-- Appointment ID (read-only) -->
+    <div class="mb-3">
+      <label for="appointmentId" class="form-label">Appointment ID</label>
+      <input type="number" id="appointmentId" class="form-control"
+             [(ngModel)]="medicalRecord.appointmentId" name="appointmentId" readonly>
+    </div>
+
+    <!-- Symptoms -->
+    <div class="mb-3">
+      <label for="symptoms" class="form-label">Symptoms</label>
+      <input type="text" id="symptoms" class="form-control"
+             [(ngModel)]="medicalRecord.symptoms" name="symptoms" required minlength="2"
+             #symptomsCtrl="ngModel">
+      <div class="text-danger" *ngIf="symptomsCtrl.touched && symptomsCtrl.invalid">
+        <div *ngIf="symptomsCtrl.errors?.['required']">Symptoms are required.</div>
+        <div *ngIf="symptomsCtrl.errors?.['minlength']">Minimum 2 characters.</div>
+      </div>
+    </div>
+
+    <!-- Physical Exam -->
+    <div class="mb-3">
+      <label for="physicalExam" class="form-label">Physical Exam</label>
+      <input type="text" id="physicalExam" class="form-control"
+             [(ngModel)]="medicalRecord.physicalExam" name="physicalExam" required
+             #examCtrl="ngModel">
+      <div class="text-danger" *ngIf="examCtrl.touched && examCtrl.invalid">
+        <div *ngIf="examCtrl.errors?.['required']">Physical Exam is required.</div>
+      </div>
+    </div>
+
+    <!-- Diagnosis -->
+    <div class="mb-3">
+      <label for="diagnosis" class="form-label">Diagnosis</label>
+      <input type="text" id="diagnosis" class="form-control"
+             [(ngModel)]="medicalRecord.diagnosis" name="diagnosis" required minlength="3"
+             #diagnosisCtrl="ngModel">
+      <div class="text-danger" *ngIf="diagnosisCtrl.touched && diagnosisCtrl.invalid">
+        <div *ngIf="diagnosisCtrl.errors?.['required']">Diagnosis is required.</div>
+        <div *ngIf="diagnosisCtrl.errors?.['minlength']">At least 3 characters.</div>
+      </div>
+    </div>
+
+    <!-- Treatment Plan -->
+    <div class="mb-4">
+      <label for="treatmentPlan" class="form-label">Treatment Plan</label>
+      <textarea id="treatmentPlan" class="form-control" rows="3"
+                [(ngModel)]="medicalRecord.treatmentPlan" name="treatmentPlan" required minlength="5"
+                #treatmentCtrl="ngModel"></textarea>
+      <div class="text-danger" *ngIf="treatmentCtrl.touched && treatmentCtrl.invalid">
+        <div *ngIf="treatmentCtrl.errors?.['required']">Treatment Plan is required.</div>
+        <div *ngIf="treatmentCtrl.errors?.['minlength']">At least 5 characters.</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary w-100" [disabled]="medicalForm.invalid">Update Medical Record</button>
+    <button type="button" class="btn btn-secondary w-100 mt-2" (click)="goBack()">Cancel</button>
+  </form>
+</div>

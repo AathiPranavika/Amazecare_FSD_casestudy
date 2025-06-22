@@ -1,0 +1,43 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4 fixed-top">
+  <img src="assets/hospital.png" alt="AmazeCare Logo" width="32" height="32" class="me-2">
+  <a class="navbar-brand fw-bold" href="#">AmazeCare</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+   <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/admin-dashboard']">Admin</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/doctor-dashboard']">Doctor</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/patient-dashboard']">Patient</a></li>
+
+  <li class="nav-item"><a class="nav-link active" [routerLink]="['/home']" fragment="home">Home</a></li>
+  <li class="nav-item"><a class="nav-link" [routerLink]="['/home']" fragment="about">About Us</a></li>
+  <li class="nav-item"><a class="nav-link" [routerLink]="['/home']" fragment="features">Features</a></li>
+  <li class="nav-item"><a class="nav-link" [routerLink]="['/home']" fragment="contact">Contact Us</a></li>
+  <li class="nav-item">
+    <a class="btn btn-light btn-sm text-primary ms-3 mt-1" routerLink="/login">Login</a>
+  </li>
+<li class="nav-item dropdown ms-3 mt-1">
+  <a class="nav-link text-white" href="#" (click)="toggleDropdown(); $event.preventDefault()">
+    <i class="bi bi-person-circle fs-5"></i>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end mt-2" *ngIf="isDropdownOpen">
+    <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+    <li><a class="dropdown-item" routerLink="/registration">Sign Up</a></li>
+    <li>
+      <a class="dropdown-item" [routerLink]="['/update-user/', loggedInUserId]">Update Profile</a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+  </ul>
+</li>
+
+</ul>
+  </div>
+</nav>
+
+<div style="padding-top: 70px;">  
+  <router-outlet></router-outlet>
+</div>  

@@ -1,0 +1,18 @@
+.dashboard-btn {
+  min-width: 180px;
+  margin-bottom: 10px;
+}
+
+.card {
+  background-color: #f7f9fc;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.card h4 {
+  font-weight: bold;
+}
+
+.card p {
+  margin: 6px 0;
+}

@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h2>Update Admin</h2>
+
+  <form #adminForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <!-- Admin ID (Read-only) -->
+    <div class="mb-3">
+      <label for="adminId" class="form-label">Admin ID</label>
+      <input type="number" id="adminId" class="form-control"
+             [(ngModel)]="admin.adminId" name="adminId" disabled>
+    </div>
+
+    <!-- Admin Code -->
+    <div class="mb-3">
+      <label for="adminCode" class="form-label">Admin Code</label>
+      <input type="text" id="adminCode" class="form-control"
+             [(ngModel)]="admin.adminCode" name="adminCode" required pattern="^ADM\d{3}$"
+             #codeControl="ngModel">
+      <div class="text-danger" *ngIf="codeControl.touched">
+        <div *ngIf="codeControl.errors?.['required']">Admin Code is required.</div>
+        <div *ngIf="codeControl.errors?.['pattern']">Must start with 'ADM' followed by exactly 3 digits.</div>
+      </div>
+    </div>
+
+    <!-- Department -->
+    <div class="mb-3">
+      <label for="department" class="form-label">Department</label>
+      <input type="text" id="department" class="form-control"
+             [(ngModel)]="admin.department" name="department" required minlength="3"
+             #deptControl="ngModel">
+      <div class="text-danger" *ngIf="deptControl.touched">
+        <div *ngIf="deptControl.errors?.['required']">Department is required.</div>
+        <div *ngIf="deptControl.errors?.['minlength']">Must be at least 3 characters.</div>
+      </div>
+    </div>
+
+    <!-- Qualification -->
+    <div class="mb-4">
+      <label for="qualification" class="form-label">Qualification</label>
+      <input type="text" id="qualification" class="form-control"
+             [(ngModel)]="admin.qualification" name="qualification" required minlength="3"
+             #qualControl="ngModel">
+      <div class="text-danger" *ngIf="qualControl.touched">
+        <div *ngIf="qualControl.errors?.['required']">Qualification is required.</div>
+        <div *ngIf="qualControl.errors?.['minlength']">Must be at least 3 characters.</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary" [disabled]="adminForm.invalid">Update</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="goBack()">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Update Appointment</h2>
+
+  <form #appointmentForm="ngForm" (ngSubmit)="updateAppointment()">
+
+    <!-- Appointment ID (Read-only) -->
+    <div class="mb-3">
+      <label for="appointmentId" class="form-label">Appointment ID</label>
+      <input type="number" id="appointmentId" class="form-control"
+             [(ngModel)]="appointment.appointmentId" name="appointmentId" disabled>
+    </div>
+
+    <!-- Patient ID (Read-only) -->
+    <div class="mb-3">
+      <label for="patientId" class="form-label">Patient ID</label>
+      <input type="text" id="patientId" class="form-control"
+             [(ngModel)]="appointment.patient.patientId" name="patientId" readonly>
+    </div>
+
+    <!-- Select Doctor -->
+    <div class="mb-3">
+      <label for="doctorId" class="form-label">Select Doctor</label>
+      <select id="doctorId" class="form-control" name="doctorId"
+              [(ngModel)]="appointment.doctor.doctorId" required #doctorControl="ngModel">
+        <option value="" disabled selected>Select a doctor</option>
+        <option *ngFor="let doctor of doctors" [value]="doctor.doctorId">
+          {{ doctor.doctorId }}: {{ doctor.user.name }} ({{ doctor.specialization }})
+        </option>
+      </select>
+      <div class="text-danger" *ngIf="doctorControl.touched && doctorControl.invalid">
+        <div *ngIf="doctorControl.errors?.['required']">Doctor is required</div>
+      </div>
+    </div>
+
+    <!-- Appointment Date & Time -->
+    <div class="mb-3">
+      <input type="datetime-local" id="appointmentDate" class="form-control"
+       name="appointmentDate" [(ngModel)]="appointment.appointmentDate" [min]="minDateTime"
+       [required]="appointment.status === 'CONFIRMED' || appointment.status === 'COMPLETED'"
+       #dateControl="ngModel">
+     <div class="text-danger" *ngIf="dateControl.touched && dateControl.invalid && (appointment.status === 'CONFIRMED' || appointment.status === 'COMPLETED')">
+     <div *ngIf="dateControl.errors?.['required']">Appointment date is required for confirmed or completed status</div>
+</div>
+
+    </div>
+
+    <!-- Symptoms -->
+    <div class="mb-3">
+      <label for="symptoms" class="form-label">Symptoms</label>
+      <textarea id="symptoms" class="form-control" name="symptoms"
+                maxlength="255" rows="3" [(ngModel)]="appointment.symptoms">
+      </textarea>
+    </div>
+
+    <!-- Status (disabled dropdown) -->
+    <div class="mb-4">
+  <label for="status" class="form-label">Status</label>
+  <select id="status" class="form-control" name="status" [(ngModel)]="appointment.status" required>
+    <option value="PENDING">PENDING</option>
+    <option value="CONFIRMED">CONFIRMED</option>
+    <option value="CANCELLED">CANCELLED</option>
+    <option value="REJECTED">REJECTED</option>
+    <option value="COMPLETED">COMPLETED</option>
+  </select>
+</div>
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary" [disabled]="appointmentForm.invalid">Update Appointment</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="goBack()">Cancel</button>
+
+  </form>
+</div>

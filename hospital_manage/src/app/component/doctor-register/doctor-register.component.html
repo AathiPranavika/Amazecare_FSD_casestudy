@@ -1,0 +1,54 @@
+<div>
+  <button class="btn btn-outline-secondary" (click)="goBack()">← Back</button>
+</div>
+
+<div class="container col-md-6 mt-5 border rounded p-4 shadow">
+  <h3 class="text-center mb-4">Create Doctor Profile </h3>
+
+  <form #doctorForm="ngForm" (ngSubmit)="registerDoctor(doctorForm.value)" >
+
+    <!-- Specialization -->
+    <div class="form-group mb-3">
+      <label for="specialization">Specialization:</label>
+      <input type="text" id="specialization" name="specialization" class="form-control" required minlength="3" ngModel #specControl="ngModel">
+      <div class="text-danger" *ngIf="specControl.touched">
+        <div *ngIf="specControl.errors?.['required']">Specialization is required</div>
+        <div *ngIf="specControl.errors?.['minlength']">Must be at least 3 characters</div>
+      </div>
+    </div>
+
+    <!-- Experience Years -->
+    <div class="form-group mb-3">
+      <label for="experienceYears">Experience Years:</label>
+      <input type="number" id="experienceYears" name="experienceYears" min="0" class="form-control" required ngModel #expControl="ngModel">
+      <div class="text-danger" *ngIf="expControl.touched">
+        <div *ngIf="expControl.errors?.['required']">Experience years are required</div>
+        <div *ngIf="expControl.errors?.['min']">Experience cannot be negative</div>
+      </div>
+    </div>
+
+    <!-- Qualification -->
+    <div class="form-group mb-3">
+      <label for="qualification">Qualification:</label>
+      <input type="text" id="qualification" name="qualification" class="form-control" required minlength="3" ngModel #qualControl="ngModel">
+      <div class="text-danger" *ngIf="qualControl.touched">
+        <div *ngIf="qualControl.errors?.['required']">Qualification is required</div>
+        <div *ngIf="qualControl.errors?.['minlength']">Must be at least 3 characters</div>
+      </div>
+    </div>
+
+    <!-- Designation -->
+    <div class="form-group mb-4">
+      <label for="designation">Designation:</label>
+      <input type="text" id="designation" name="designation" class="form-control" required minlength="3" ngModel #desigControl="ngModel">
+      <div class="text-danger" *ngIf="desigControl.touched">
+        <div *ngIf="desigControl.errors?.['required']">Designation is required</div>
+        <div *ngIf="desigControl.errors?.['minlength']">Must be at least 3 characters</div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100" [disabled]="doctorForm.invalid">Register Doctor</button>
+  </form>
+
+</div>
